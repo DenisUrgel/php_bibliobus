@@ -1,10 +1,13 @@
 <nav class="navbar">
-	<div class="logo">
-		<img src="{{ asset('img/logo.png') }}" alt="Logo BiblioBus"/>
-	</div>
-	<a href="{{ path('app_home') }}">Accueil</a>
-	<a href="{{ path('app_register_info') }}">S'inscrire</a>
-	<a href="{{ path('app_seconnecter') }}">Se connecter</a>
-	<a href="{{ path('app_contact') }}">Contact</a>
-	<a href="{{ path('app_livres') }}">Liste des livres</a>
+  <div class="logo">
+    <img src="{{ asset('img/logo.png') }}" alt="Logo BiblioBus" />
+  </div>
+  <a href="{{ path('app_home') }}">Accueil</a>
+  <a href="{{ path('app_register_info') }}">S'inscrire</a>
+  <a href="{{ path('app_login') }}">Se connecter</a>
+  <a href="{{ path('app_contact') }}">Contact</a>
+  <a href="{{ path('app_livres') }}">Liste des livres</a>
+
+  {% if app.user %}
+  	<li class="nav-item"></li>
 </nav>
