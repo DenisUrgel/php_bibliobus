@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body {
+  background-color: #333;
+}
+
+
+.navbar a:hover {
+  background: #888;
+}
+
+.logo img {
+  width: 20px; /* Adjust as needed */
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+  background: linear-gradient(to right, #002d13, #004d1a, #002d13);
+  color: #fff;
+}
+.hero h1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+.hero p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+  background: linear-gradient(to right, #002d13, #004d1a, #002d13);
+  color: #fff;
+}
+.subscription-box {
+  background: rgba(0, 100, 50, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.subscription-box h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.subscription-box p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.cta {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.cta a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.cta a:hover {
+  text-decoration: underline;
+}

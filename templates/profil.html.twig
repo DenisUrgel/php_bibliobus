@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/profil/profil.css" />
+    
+  </head>
+
+  <body>
+
+    <nav class="navbar">
+        <div class="logo">
+          <img src="{{ asset('img/logo.png') }}" alt="Logo" />
+        </div>
+        <a href="{{ path('app_home') }}">Acceuil</a>
+        
+      </nav>
+    
+      <div class="container">
+          <div class="profile-card">
+            <div class="profile-header">
+                <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Avatar" class="profile-avatar">
+                <div class="profile-name">NOM Prénom</div>
+            </div>
+
+            <h2>Mon profil</h2>
+
+            <form method="post">
+                <label>Nombre de personnes dans la famille :</label>
+                <input type="number" name="famille_nombre" placeholder="Nombre de personnes">
+
+                <label>Date de naissance :</label>
+                <input type="text" name="date_naissance" placeholder="jj/mm/aaaa">
+
+                <label>Adresse :</label>
+                <input type="text" name="adresse" placeholder="Votre adresse">
+
+                <label>Ville :</label>
+                <input type="text" name="ville" placeholder="Votre ville">
+
+                <label>Code postale :</label>
+                <input type="text" name="code_postal" placeholder="Votre code postale">
+
+                <label>N° de téléphone :</label>
+                <input type="text" name="telephone" placeholder="Votre téléphone">
+
+                <label>Adresse email :</label>
+                <input type="email" name="email" placeholder="Votre email">
+
+                <label>Mot de passe :</label>
+                <input type="password" name="mot_de_passe" placeholder="Votre mot de passe">
+
+                <button type="submit" class="btn-primary">Éditer mon Profil</button>
+            </form>
+
+            <button class="btn-danger">Demande de résiliation de mon compte</button>
+        </div>
+        
+        
+    </div>
+
+  </body>
+</html>

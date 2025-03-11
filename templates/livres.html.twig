@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+
+    <link rel="stylesheet" href="styles/livres.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="{{ asset('img/logo.png') }}"  alt="Logo BiblioBus" />
+      </div>
+      <nav>
+        <a href="{{ path('app_home') }}">Accueil</a>
+        <a href="{{ path('app_contact') }}">Contact</a>
+        <a href="{{ path('app_profil') }}">Profil</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="search-bar">
+        <input type="text" placeholder="Recherche de livre" />
+        <button type="submit">🔍</button>
+      </div>
+
+      <div class="content">
+        <div class="book-list">
+          <h2>Liste de livres</h2>
+
+          <div class="book-item">
+            <div class="book-image">
+                <img src="{{ asset('img/R.jpg') }}"  alt="Logo BiblioBus" />
+            </div>
+            <div class="book-info">
+              <h3>L'etranger</h3>
+              <p>
+                 "L'Étranger" d'Albert Camus suit l'histoire de Meursault, un employé de bureau vivant à Alger. Au début du roman, Meursault apprend la mort de sa mère dans un hospice. Bien qu'il se montre poli lors des funérailles, il ne manifeste aucun chagrin évident, ce qui attire les critiques de son entourage et le qualifie d'étrange 
+              </p>
+              <button>Réserver</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="bibliobus-info">
+          <img src="{{ asset('images/calendar.png') }}" alt="Calendrier" />
+          <p>
+            Le passage du BiblioBus sera bimensuel, réparti sur deux semaines
+            chaque mois :<br />
+            <strong>Mardi</strong> : 16h30 - 18h30<br />
+            <strong>Samedi</strong> : 14h30 - 18h30
+          </p>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>
