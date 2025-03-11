@@ -30,6 +30,11 @@
 		{{ form_widget(registrationForm.lastName) }}
 	</div>
 	<div class="mb-3">
+		<label for="registration_form_lastName">Nombre de personne dans la famille</label>
+		<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
+		{{ form_widget(registrationForm.familyMembers) }}
+	</div>
+	<div class="mb-3">
 		<label for="registration_form_email">Email</label>
 		<div class="text-danger">{{form_errors(registrationForm.email)}}</div>
 		{{ form_widget(registrationForm.email) }}

@@ -26,6 +26,8 @@ class RegistrationFormType extends AbstractType
             ->add('lastName', TextType::class)
             ->add('email', EmailType::class)
             ->add('zipCode', TextType::class)
+            ->add('address', TextType::class)
+            ->add('city', TextType::class)
             ->add('familyMembers', IntegerType::class)
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
