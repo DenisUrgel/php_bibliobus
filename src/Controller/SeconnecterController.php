@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class SeconnecterController extends AbstractController
 {
     #[Route('/seconnecter', name: 'app_seconnecter')]
-    public function register(): Response
+    public function login(): Response
     {
         return $this->render('seconnecter.html.twig');
     }
