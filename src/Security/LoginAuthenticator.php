@@ -22,9 +22,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
-    {
-    }
+    public function __construct(private UrlGeneratorInterface $urlGenerator) {}
 
     public function authenticate(Request $request): Passport
     {
@@ -48,7 +46,14 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        
+        // récupérons les rôle de l'utilisateur connecté
+        $userRoles = $token->getUser()->getRoles();
+
+        // s'il possède le rôle d'administrateur, redirigeons-le vers l'espace d'administration
+        if (in_array('ROLE_ADMIN', $userRoles)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_admin_home'));
+        }
+
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
 

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -19,6 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
@@ -31,12 +33,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
+    #[Assert\Length(
+        min: 12,
+        max: 255,
+        minMessage: "Le mot de passe doit contenir au minimum {{ limit }} caractères.",
+        maxMessage: "Le mot de passe doit contenir au maximum {{ limit }} caractères.",
+    )]
+    #[Assert\Regex(
+        pattern: "/^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-Ỳ])(?=.*[0-9])(?=.*[^a-zà-ÿA-ZÀ-Ỳ0-9]).{11,255}$/",
+        match: true,
+        message: "Le mot de passe doit contentir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial.",
+    )]
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: "Le prénom ne doit pas dépasser {{ limit }} caractères.",
+    )]
     #[ORM\Column(length: 50)]
     private ?string $firstName = null;
 
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: "Le nom ne doit pas dépasser {{ limit }} caractères.",
+    )]
     #[ORM\Column(length: 50)]
     private ?string $lastName = null;
 
@@ -52,14 +76,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[Assert\NotBlank(message: "L'adresse est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'adresse ne doit pas dépasser {{ limit }} caractères.",
+    )]
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
+    #[Assert\NotBlank(message: "La nom de la ville est obligatoire.")]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: "La nom de la ville ne doit pas dépasser {{ limit }} caractères.",
+    )]
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
+    #[Assert\NotBlank(message: "Le code postal est obligatoire.")]
+    #[Assert\Length(
+        max: 5,
+        maxMessage: "Le code postal ne doit pas dépasser {{ limit }} caractères.",
+    )]
     #[ORM\Column(length: 5)]
     private ?string $zipCode = null;
+
+    #[ORM\Column]
+    private ?bool $isDepositPaid = null;
 
     public function getId(): ?int
     {
@@ -240,6 +282,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setZipCode(string $zipCode): static
     {
         $this->zipCode = $zipCode;
+
+        return $this;
+    }
+
+    public function isDepositPaid(): ?bool
+    {
+        return $this->isDepositPaid;
+    }
+
+    public function setIsDepositPaid(bool $isDepositPaid): static
+    {
+        $this->isDepositPaid = $isDepositPaid;
 
         return $this;
     }
