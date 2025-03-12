@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>BiblioBus</title>
-		<link rel="stylesheet" href="/styles/register.css"/>
-	</head>
-	<body>
-		<nav class="navbar">
-			<div class="logo">
-				<img src="{{ asset('img/logo.png') }}" alt="Logo"/>
-			</div>
-			<a href="{{ path('app_home') }}">Acceuil</a>
+{% extends 'base.html.twig' %}
 
-		</nav>
+{% block stylesheets %}
+	<link rel="stylesheet" href="/styles/register.css"/>
+{% endblock %}
 
+{% block main %}
+	<main>
 		<section class="subscribe">
 			<div class="subscription-box">
 				<h2>10€</h2>
@@ -35,5 +26,5 @@
 				</div>
 			</div>
 		</section>
-	</body>
-</html>
+	</main>
+{% endblock %}
