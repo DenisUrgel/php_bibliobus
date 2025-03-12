@@ -2,13 +2,16 @@
 	<div class="logo">
 		<img src="{{ asset('img/logo.png') }}" alt="Logo BiblioBus"/>
 	</div>
-	<a href="{{ path('app_home') }}">Accueil</a>
 
 	{% if app.user %}
-	<a href="{{ path('app_contact') }}">Contact</a>
-	<a href="{{ path('app_livres') }}">Liste des livres</a>
-  <a href="{{ path('app_logout') }}">Déconnexion</a>
+		<a href="{{ path('app_contact') }}">Contact</a>
+		<a href="{{ path('app_livres') }}">Liste des livres</a>
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href="{{ path('app_admin_index') }}">Espace admin</a>
+		{% endif %}
+		<a href="{{ path('app_logout') }}">Déconnexion</a>
 	{% else %}
+		<a href="{{ path('app_home') }}">Accueil</a>
 		<a href="{{ path('app_register_info') }}">S'inscrire</a>
 		<a href="{{ path('app_login') }}">Se connecter</a>
 	{% endif %}
