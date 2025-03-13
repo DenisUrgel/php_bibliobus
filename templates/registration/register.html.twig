@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="/styles/register.css"/>
+	<link rel="stylesheet" href="/styles/app.css"/>
 {% endblock %}
 
 
@@ -27,42 +27,50 @@
 		<div class="mb-3">
 			<label for="registration_form_lastName">Nom</label>
 			<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
-			{{ form_widget(registrationForm.lastName) }}
+			{{ form_widget(registrationForm.lastName, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<label for="registration_form_lastName">Nombre de personne dans la famille</label>
 			<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
-			{{ form_widget(registrationForm.familyMembers) }}
+			{{ form_widget(registrationForm.familyMembers, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<label for="registration_form_email">Email</label>
 			<div class="text-danger">{{form_errors(registrationForm.email)}}</div>
-			{{ form_widget(registrationForm.email) }}
+			{{ form_widget(registrationForm.email, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<label for="registration_form_address">Adresse</label>
 			<div class="text-danger">{{form_errors(registrationForm.address)}}</div>
-			{{ form_widget(registrationForm.address) }}
+			{{ form_widget(registrationForm.address, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<label for="registration_form_city">Ville</label>
 			<div class="text-danger">{{form_errors(registrationForm.city)}}</div>
-			{{ form_widget(registrationForm.city) }}
+			{{ form_widget(registrationForm.city, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<label for="registration_form_zipCode">Code postal</label>
 			<div class="text-danger">{{form_errors(registrationForm.zipCode)}}</div>
-			{{ form_widget(registrationForm.zipCode) }}
+			{{ form_widget(registrationForm.zipCode, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<label for="registration_form_password_first">Mot de passe</label>
 			<div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
-			{{ form_widget(registrationForm.password.first) }}
+			{{ form_widget(registrationForm.password.first, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<label for="registration_form_password_second">Confirmation du mot de passe</label>
 			<div class="text-danger">{{form_errors(registrationForm.password.second)}}</div>
-			{{ form_widget(registrationForm.password.second) }}
+			{{ form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}}) }}
+
 		</div>
 		<div class="mb-3">
 			<div class="text-danger">{{form_errors(registrationForm.agreeTerms)}}</div>

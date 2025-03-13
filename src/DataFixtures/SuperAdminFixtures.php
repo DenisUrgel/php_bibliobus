@@ -39,6 +39,7 @@ class SuperAdminFixtures extends Fixture
         $superAdmin->setIsVerified(true);
         $superAdmin->setEmail("suriusblack@gmail.com");
         $superAdmin->setRoles(['ROLE_ADMIN', 'ROLE_USER']);
+        $superAdmin->setIsSubscribed(true);
         $superAdmin->setIsDepositPaid(true);
 
         $passwordHashed = $this->hasher->hashPassword($superAdmin, "azerty1234A*");

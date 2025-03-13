@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\authentification;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -40,6 +40,7 @@ class RegistrationController extends AbstractController
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setUpdatedAt(new \DateTimeImmutable());
             $user->setIsDepositPaid(false);
+            $user->setIsSubscribed(false);
             $user->setRoles([
                 "ROLE_USER"
             ]);
@@ -69,7 +70,11 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, UserRepository $userRepository): Response
+    public function verifyUserEmail(
+        Request $request,
+        UserRepository $userRepository,
+        EntityManagerInterface $em
+        ): Response
     {
         $id = $request->query->get('id');
 
@@ -87,9 +92,19 @@ class RegistrationController extends AbstractController
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
+            // $this->addFlash('verify_email_error', $exception->getReason());
 
-            return $this->redirectToRoute('app_login');
+            // Si l'email n'a pas été vérifié pour x raisons,
+
+            // Supprimons le compte de l'utilisateur
+            $em->remove($user);
+            $em->flush();
+
+            // générons le message flash correspondant,
+            $this->addFlash('verify_email_error', "Ce lien de validation de compte a expiré. Veuillez recréer votre compte.");
+
+            // effectuons une redirection vers la page d'inscription
+            return $this->redirectToRoute('app_register');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates

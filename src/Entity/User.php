@@ -103,6 +103,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $isDepositPaid = null;
 
+    #[ORM\Column]
+    private ?bool $isSubscribed = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -294,6 +297,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsDepositPaid(bool $isDepositPaid): static
     {
         $this->isDepositPaid = $isDepositPaid;
+
+        return $this;
+    }
+
+    public function isSubscribed(): ?bool
+    {
+        return $this->isSubscribed;
+    }
+
+    public function setIsSubscribed(bool $isSubscribed): static
+    {
+        $this->isSubscribed = $isSubscribed;
 
         return $this;
     }

@@ -40,6 +40,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 80vh;
   background: radial-gradient(circle, #075e2d, #0b0b0b);
 }

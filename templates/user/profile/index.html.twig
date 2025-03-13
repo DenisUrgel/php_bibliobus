@@ -1,0 +1,33 @@
+{% extends "base_user.html.twig" %}
+
+{% block title %}Mon profil
+{% endblock %}
+
+{% block description %}Consultation de mon profil
+{% endblock %}
+
+{% block keywords %}profiil
+{% endblock %}
+
+{% block main %}
+	<main>
+		<h1 class="text-center my-3 display-5">Mon profil</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-6 mx-auto p-4 shadow bg-black">
+                    <p><strong>Nom</strong>: {{app.user.firstName}}</p>
+                    <p><strong>Prénom</strong>: {{app.user.lastName}}</p>
+                    <p><strong>Email</strong>: {{app.user.email}}</p>
+                    <p><strong>Adresse</strong>: {{app.user.address}}</p>
+                    <p><strong>Ville</strong>: {{app.user.city}}</p>
+                    <p><strong>Code postal</strong>: {{app.user.zipCode}}</p>
+                    <p><strong>Statut des frais de caution</strong>: {{app.user.isDepositPaid ? 'Payé' : 'Pas encore payé'}}</p>
+                    <p><strong>Statut des frais d'inscription</strong>: {{app.user.isDepositPaid ? 'Payé' : 'Pas encore payé'}}</p>
+                    <p><strong>Compte créé le</strong>: {{app.user.createdAt|format_datetime()}}</p>
+                    <p><strong>Compte modifié le</strong>: {{app.user.updatedAt|format_datetime()}}</p>
+                </div>
+            </div>
+        </div>
+	</main>
+{% endblock %}

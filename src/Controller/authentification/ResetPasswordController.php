@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\authentification;
 
 use App\Entity\User;
 use App\Form\ChangePasswordFormType;
@@ -121,6 +121,8 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
+            $this->addFlash('success', "Votre mot de passe a bien été réinitialisé. Vous pouvez vous connecté");
+
             return $this->redirectToRoute('app_login');
         }
 
@@ -163,6 +165,8 @@ class ResetPasswordController extends AbstractController
             ->htmlTemplate('email/reset_password_email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
+                'userFirstName' => $user->getFirstName(),
+                'userLastName' => $user->getlastName(),
             ])
         ;
 
