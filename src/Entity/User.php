@@ -70,8 +70,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+
+    #[ORM\Column(nullable: true)]
+    private ?int $waitingToChangeFamilyMembersNumber = null;
+
+    
+
+    #[Assert\NotBlank(message: "Le nombre total des membres de votre famille est obligatoire.")]
+    #[Assert\Positive(message: "Le nombre total des membres de la famille doit être positif.")]
+    #[Assert\Range(
+        min: 1,
+        max: 50,
+        notInRangeMessage: "Le nombre total des membres de la famille doit être compris entre {{ min }} et {{ max }}.",
+    )]
     #[ORM\Column]
     private ?int $familyMembers = null;
+
 
     #[ORM\Column]
     private bool $isVerified = false;
@@ -106,6 +120,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $isSubscribed = null;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,7 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(?string $email): static
     {
         $this->email = $email;
 
@@ -165,7 +181,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(?string $password): static
     {
         $this->password = $password;
 
@@ -186,7 +202,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): static
+    public function setFirstName(?string $firstName): static
     {
         $this->firstName = $firstName;
 
@@ -198,7 +214,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): static
+    public function setLastName(?string $lastName): static
     {
         $this->lastName = $lastName;
 
@@ -234,7 +250,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->familyMembers;
     }
 
-    public function setFamilyMembers(int $familyMembers): static
+    public function setFamilyMembers(?int $familyMembers): static
     {
         $this->familyMembers = $familyMembers;
 
@@ -309,6 +325,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsSubscribed(bool $isSubscribed): static
     {
         $this->isSubscribed = $isSubscribed;
+
+        return $this;
+    }
+
+    public function getWaitingToChangeFamilyMembersNumber(): ?int
+    {
+        return $this->waitingToChangeFamilyMembersNumber;
+    }
+
+    public function setWaitingToChangeFamilyMembersNumber(?int $waitingToChangeFamilyMembersNumber): static
+    {
+        $this->waitingToChangeFamilyMembersNumber = $waitingToChangeFamilyMembersNumber;
 
         return $this;
     }

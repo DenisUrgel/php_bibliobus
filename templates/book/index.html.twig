@@ -1,0 +1,16 @@
+{% include 'base.html.twig' %}
+
+{% block main %}
+    <main>
+    <div class="container">
+        <h1 class="text-center my-3 display-5">Liste des livres</h1>
+
+        <div>
+        {# faire l'entité book #}
+            {% if book.exemplaires is not empty %}
+                <a href="" class="btn btn-primary"></a>
+            {% endif %}
+        </div>
+    </div>
+    </main>
+{% endblock %}
