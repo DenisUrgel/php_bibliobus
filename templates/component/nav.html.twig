@@ -1,26 +1,27 @@
-<nav class="">
+<nav class="header">
 	<div class="logo">
 		<img src="{{ asset('img/logo.png') }}" alt="Logo BiblioBus"/>
 	</div>
+	<div>
+		{% if app.user %}
+			<a href="{{ path('app_contact') }}">Contact</a>
+			<a href="{{ path('app_book_list') }}">Liste des livres</a>
 
-	{% if app.user %}
-		<a href="{{ path('app_contact') }}">Contact</a>
-		<a href="{{ path('app_book_list') }}">Liste des livres</a>
-
-		{% if is_granted('ROLE_ADMIN') %}
-			<a href="{{ path('app_admin_index') }}">Espace admin</a>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('app_admin_index') }}">Espace admin</a>
+			{% endif %}
+			{% if is_granted('ROLE_USER') %}
+				<a href="{{ path('app_user_index') }}">Espace privé</a>
+			{% endif %}
+			<a href="{{ path('app_logout') }}">Déconnexion</a>
+		{% else %}
+			<a href="{{ path('app_home') }}">Accueil</a>
+			<a href="{{ path('app_register_info') }}">S'inscrire</a>
+			<a href="{{ path('app_login') }}">Se connecter</a>
 		{% endif %}
-		{% if is_granted('ROLE_USER') %}
-			<a href="{{ path('app_user_index') }}">Espace privé</a>
-		{% endif %}
-		<a href="{{ path('app_logout') }}">Déconnexion</a>
-	{% else %}
-		<a href="{{ path('app_home') }}">Accueil</a>
-		<a href="{{ path('app_register_info') }}">S'inscrire</a>
-		<a href="{{ path('app_login') }}">Se connecter</a>
-	{% endif %}
 
-	{% if app.user %}
-		<li class="nav-item"></li>
-	{% endif %}
+		{% if app.user %}
+			<li class="nav-item"></li>
+		{% endif %}
+	</div>
 </nav>
