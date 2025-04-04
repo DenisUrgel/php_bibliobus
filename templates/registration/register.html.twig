@@ -5,81 +5,94 @@
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="/styles/app.css"/>
+	<link rel="stylesheet" href="/styles/register.css"/>
 {% endblock %}
 
 
 {% block main %}
-	<main>
-		{% for flash_error in app.flashes('verify_email_error') %}
-			<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-		{% endfor %}
+	<main class="registration_main">
+		<div class="registration_wrapper">
+			<div class="top_circle">
+				<div class="circle"></div>
+				<div class="circle"></div>
+			</div>
 
-		<h1>Inscription</h1>
+			{% for flash_error in app.flashes('verify_email_error') %}
+				<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+			{% endfor %}
 
-		{{ form_errors(registrationForm) }}
+			<h1>Inscription</h1>
 
-		{{ form_start(registrationForm) }}
-		<div class="mb-3">
-			<label for="registration_form_firstName">Prénom</label>
-			<div class="text-danger">{{form_errors(registrationForm.firstName)}}</div>
-			{{ form_widget(registrationForm.firstName, {'attr': {'class':'form-control'}}) }}
+			{{ form_errors(registrationForm) }}
+
+			{{ form_start(registrationForm, { 'attr': { 'novalidate': 'novalidate'} }) }}
+			<div class="registration_div">
+				<label for="registration_form_firstName">Prénom</label>
+				<div class="text-danger">{{form_errors(registrationForm.firstName)}}</div>
+				{{ form_widget(registrationForm.firstName, {'attr': {'class':'registration_field'}}) }}
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_lastName">Nom</label>
+				<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
+				{{ form_widget(registrationForm.lastName, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_lastName">Nombre de personne dans la famille</label>
+				<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
+				{{ form_widget(registrationForm.familyMembers, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_email">Email</label>
+				<div class="text-danger">{{form_errors(registrationForm.email)}}</div>
+				{{ form_widget(registrationForm.email, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_address">Adresse</label>
+				<div class="text-danger">{{form_errors(registrationForm.address)}}</div>
+				{{ form_widget(registrationForm.address, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_city">Ville</label>
+				<div class="text-danger">{{form_errors(registrationForm.city)}}</div>
+				{{ form_widget(registrationForm.city, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_zipCode">Code postal</label>
+				<div class="text-danger">{{form_errors(registrationForm.zipCode)}}</div>
+				{{ form_widget(registrationForm.zipCode, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_password_first">Mot de passe</label>
+				<div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
+				{{ form_widget(registrationForm.password.first, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<label for="registration_form_password_second">Confirmation du mot de passe</label>
+				<div class="text-danger">{{form_errors(registrationForm.password.second)}}</div>
+				{{ form_widget(registrationForm.password.second, {'attr': {'class':'registration_field'}}) }}
+
+			</div>
+			<div class="registration_div">
+				<div class="text-danger">{{form_errors(registrationForm.agreeTerms)}}</div>
+				<label for="registration_form_agreeTerms">{{ form_widget(registrationForm.agreeTerms) }}
+					Lire et accepter les conditions générales d'utilisation</label>
+			</div>
+
+
+			<button type="submit" class="btn">S'inscrire</button>
+			{{ form_end(registrationForm) }}
+			<div class="bottom_circle">
+				<div class="circle"></div>
+				<div class="circle"></div>
+			</div>
 		</div>
-		<div class="mb-3">
-			<label for="registration_form_lastName">Nom</label>
-			<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
-			{{ form_widget(registrationForm.lastName, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<label for="registration_form_lastName">Nombre de personne dans la famille</label>
-			<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
-			{{ form_widget(registrationForm.familyMembers, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<label for="registration_form_email">Email</label>
-			<div class="text-danger">{{form_errors(registrationForm.email)}}</div>
-			{{ form_widget(registrationForm.email, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<label for="registration_form_address">Adresse</label>
-			<div class="text-danger">{{form_errors(registrationForm.address)}}</div>
-			{{ form_widget(registrationForm.address, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<label for="registration_form_city">Ville</label>
-			<div class="text-danger">{{form_errors(registrationForm.city)}}</div>
-			{{ form_widget(registrationForm.city, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<label for="registration_form_zipCode">Code postal</label>
-			<div class="text-danger">{{form_errors(registrationForm.zipCode)}}</div>
-			{{ form_widget(registrationForm.zipCode, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<label for="registration_form_password_first">Mot de passe</label>
-			<div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
-			{{ form_widget(registrationForm.password.first, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<label for="registration_form_password_second">Confirmation du mot de passe</label>
-			<div class="text-danger">{{form_errors(registrationForm.password.second)}}</div>
-			{{ form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}}) }}
-
-		</div>
-		<div class="mb-3">
-			<div class="text-danger">{{form_errors(registrationForm.agreeTerms)}}</div>
-			<label for="registration_form_agreeTerms">{{ form_widget(registrationForm.agreeTerms) }}
-				Lire et accepter les conditions générales d'utilisation</label>
-		</div>
-
-
-		<button type="submit" class="btn">Register</button>
-		{{ form_end(registrationForm) }}
 	</main>
+
 {% endblock %}

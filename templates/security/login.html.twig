@@ -4,12 +4,13 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="/styles/seconnecter.css"/>
+	<link rel="stylesheet" href="/styles/app.css"/>
+	<link rel="stylesheet" href="/styles/login.css"/>
 {% endblock %}
 
 {% block main %}
 	<main>
-		<div class="hero">
+		<div class="login-wrapper">
 			<div class="login-form">
 
 				{% include 'component/_alert.html.twig' with {'label' : 'success'} %}
@@ -20,25 +21,26 @@
 					</div>
 				{% endif %}
 
-				<form method="post">
-					<h1 class="">Please sign in</h1>
+				<form method="post" novalidate>
+					<h1>Connectez-vous</h1>
 					<label for="inputEmail">Email</label>
 					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus/>
-					<label for="inputPassword">Password</label>
+					<label for="inputPassword">Mot de passe</label>
 					<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required/>
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
 
-					<div class="">
+					<div>
 						<label>
 							<input type="checkbox" name="_remember_me"/>
 							Se souvenir de moi
 						</label>
 					</div>
-					<div class="">
-						<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a><br>
-					</div>
 
 					<button class="btn btn-lg btn-primary" type="submit">Connexion</button>
+					
+					<div>
+						<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a><br>
+					</div>
 				</form>
 			</div>
 		</div>

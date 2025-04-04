@@ -1,15 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="/styles/register.css"/>
+	<link rel="stylesheet" href="/styles/app.css"/>
+	<link rel="stylesheet" href="/styles/register_info.css"/>
 {% endblock %}
 
 {% block main %}
 	<main>
 		<section class="subscribe">
 			<div class="subscription-box">
-				<h2>10€</h2>
-				<p>Annuel</p>
+				<div class="top_circle">
+					<div class="circle"></div>
+					<div class="circle"></div>
+				</div>
+				<div class="title">
+					<h2>10€</h2>
+					<p>Annuel</p>
+				</div>
 				<div class="subscription-details">
 					<p>
 						<strong>Abonnement familial</strong>
@@ -19,11 +26,21 @@
 					<p>Un livre peut être réservé pour plusieurs mois.</p>
 					<p>Plusieurs exemplaires autorisés si de collections différentes.</p>
 				</div>
-				<div class="cta">
-					<a href="{{ path('app_register') }}">
-						<span>&larr;</span>
-						cliquez ici</a>
+				<div class="bottom_circle">
+					<div class="circle"></div>
+					<div class="circle"></div>
 				</div>
+
+			</div>
+			<div class="cta">
+				<a href="{{ path('app_register') }}">
+					<span>
+						<svg width="130" height="130" viewbox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M65 40L40 65M40 65L65 90M40 65H90M127.5 65C127.5 99.5178 99.5178 127.5 65 127.5C30.4822 127.5 2.5 99.5178 2.5 65C2.5 30.4822 30.4822 2.5 65 2.5C99.5178 2.5 127.5 30.4822 127.5 65Z" stroke="#FFDDBF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+
+					</span>
+					cliquez ici</a>
 			</div>
 		</section>
 	</main>

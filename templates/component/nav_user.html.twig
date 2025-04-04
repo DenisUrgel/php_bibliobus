@@ -1,18 +1,18 @@
-<nav class="">
+<nav>
 	<div class="logo">
 		<img src="{{ asset('img/logo.png') }}" alt="Logo BiblioBus"/>
 	</div>
+	<div>
 
-	<a href="{{ path('app_contact') }}">Contact</a>
-	<a href="{{ path('app_livres') }}">Liste des livres</a>
-	<a href="#">Mes prêt</a>
-	<a href="#">Mes réservation</a>
-	<a href="{{path('app_user_profile_index')}}">Mon Profil</a>
+		<a href="{{ path('app_contact') }}">Contact</a>
+		<a href="{{ path('app_livres') }}">Liste des livres</a>
+		<a href="#">Mes prêt</a>
+		<a href="#">Mes réservation</a>
+		<a href="{{path('app_user_profile_index')}}">Mon Profil</a>
 
-	{% if  is_granted('ROLE_ADMIN') %}
-		<a href="{{ path('app_admin_index') }}">Espace admin</a>
-	{% endif %}
-	<a href="{{ path('app_home') }}">Retour au site</a>
-	<a href="{{ path('app_logout') }}">Déconnexion</a>
-
+		{% if  is_granted('ROLE_ADMIN') %}
+			<a href="{{ path('app_admin_index') }}">Espace admin</a>
+		{% endif %}
+		<a href="{{ path('app_logout') }}">Déconnexion</a>
+	</div>
 </nav>
