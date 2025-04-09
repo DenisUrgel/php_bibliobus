@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -13,17 +14,26 @@ class Contact
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
     #[ORM\Column(length: 50)]
     private ?string $firstName = null;
 
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Email(message: "L'adresse email n'est pas valide.")]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[Assert\NotBlank(message: "Le message est obligatoire.")]
     #[ORM\Column(length: 500)]
     private ?string $message = null;
+
+    #[Assert\NotBlank(message: "L'Objet est obligatoire.")]
+    #[ORM\Column(length: 255)]
+    private ?string $subject = null;
 
     public function getId(): ?int
     {
@@ -74,6 +84,18 @@ class Contact
     public function setMessage(string $message): static
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): static
+    {
+        $this->subject = $subject;
 
         return $this;
     }

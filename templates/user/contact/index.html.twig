@@ -1,0 +1,32 @@
+{% extends 'base_user.html.twig' %}
+
+{% block title %}
+	Contact
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="/styles/contact.css"/>
+{% endblock %}
+
+{% block main %}
+	<main>
+		<div class="contact-container">
+			<div class="contact-form">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">{{ message }}</div>
+				{% endfor %}
+
+				{{ form_start(form, { 'attr': { 'novalidate': 'novalidate'} }) }}
+
+				{{ form_row(form.nom, {'attr': {'class':'form-control'}})}}
+				{{ form_row(form.firstName, {'attr': {'class':'form-control'}}) }}
+				{{ form_row(form.email, {'attr': {'class':'form-control'}}) }}
+				{{ form_row(form.subject, {'attr': {'class':'form-control'}}) }}
+				{{ form_row(form.message, {'attr': {'class':'form-control'}}) }}
+				{{ form_row(form.send, {'attr': {'class':'form-control'}}) }}
+
+				{{ form_end(form, {'attr': {'class':'form-control'}}) }}
+			</div>
+		</div>
+	</main>
+{% endblock %}
