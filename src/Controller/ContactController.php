@@ -22,13 +22,7 @@ final class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Ici tu peux envoyer un email ou traiter les données
-
-            // $emailAddress = $contact->getEmail();
-            // if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
-            //     throw new \Exception('Adresse email invalide');
-            // }
-
+            
             $email = (new Email())
                 ->from($contact->getEmail())
                 ->replyTo($contact->getEmail())
@@ -50,7 +44,5 @@ final class ContactController extends AbstractController
         return $this->render('/user/contact/index.html.twig', [
             'form' => $form->createView(),
         ]);
-
-        // return $this->render('contact.html.twig');
     }
 }

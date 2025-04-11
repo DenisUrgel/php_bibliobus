@@ -11,6 +11,8 @@
 {% block main %}
 	<main>
 		<div class="contact-container">
+			<h1 class="text-center my-3 display-5">Nous contactez</h1>
+
 			<div class="contact-form">
 				{% for message in app.flashes('success') %}
 					<div class="alert alert-success">{{ message }}</div>
