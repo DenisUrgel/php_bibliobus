@@ -48,6 +48,10 @@
   }
 }
 
+.btn{
+  margin-bottom: 10px;
+}
+
 footer {
   position: relative;
 }
