@@ -19,6 +19,10 @@ class SuperAdminFixtures extends Fixture
     {
         $superAdmin = $this->createSuperAdmin();
         $manager->persist($superAdmin);
+
+        $user = $this->createBaseUser();
+        $manager->persist($user);
+        
         $manager->flush();
     }
 
@@ -48,5 +52,28 @@ class SuperAdminFixtures extends Fixture
         $superAdmin->setUpdatedAt(new DateTimeImmutable());
 
         return $superAdmin;
+    }
+
+    private function createBaseUser(): User{
+        $BaseUser = new User();
+
+        $BaseUser->setFirstName('Denis');
+        $BaseUser->setlastName('Urgel');
+        $BaseUser->setFamilyMembers(4);
+        $BaseUser->setAddress("8 rue beethoven");
+        $BaseUser->setCity("les clayes sous bois");
+        $BaseUser->setZipCode("78340");
+        $BaseUser->setIsVerified(true);
+        $BaseUser->setEmail("denisurgel04@gmail.com");
+        $BaseUser->setRoles(['ROLE_USER']);
+        $BaseUser->setIsSubscribed(true);
+        $BaseUser->setIsDepositPaid(true);
+
+        $passwordHashed = $this->hasher->hashPassword($BaseUser, "azerty1234A*");
+        $BaseUser->setPassword($passwordHashed);
+        $BaseUser->setCreatedAt(new DateTimeImmutable());
+        $BaseUser->setUpdatedAt(new DateTimeImmutable());
+
+        return $BaseUser;
     }
 }

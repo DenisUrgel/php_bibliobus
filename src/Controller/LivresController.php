@@ -9,10 +9,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class LivresController extends AbstractController
 {
-    #[Route('/livres', name: 'app_livres')]
-    public function register(): Response
+    #[Route('/book', name: 'app_book')]
+    public function bookList(): Response
     {
-        return $this->render('livres.html.twig');
+        return $this->render('/user/book/index.html.twig');
+    }
+    
+    #[Route('/bookTest', name: 'app_book_test')]
+    public function bookListTest(): Response
+    {
+        return $this->render('Livres.html.twig');
     }
 
 }
