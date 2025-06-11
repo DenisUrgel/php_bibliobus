@@ -1,5 +1,21 @@
 .main_book {
     justify-content: start;
+    align-items: center;
+
+    .book {
+        display: flex;
+        gap: 15px;
+        width: 60%;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #0A5340;
+        height: 200px;
+
+        img {
+            height: 100%;
+        }
+    }
 }
 
 .search-bar {
