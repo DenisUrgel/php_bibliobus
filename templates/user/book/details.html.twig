@@ -1,0 +1,32 @@
+{% extends 'base_user.html.twig' %}
+
+{% block title %}
+	Livre
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="/styles/details.css"/>
+{% endblock %}
+
+{% block main %}
+	<main class='book_details'>
+		<h1>{{book.title}}</h1>
+
+		<img src="{{book.image}}" alt="couverture">
+		<div class='info'>
+
+			<p class='categorie'>{{book.categorie}}</p>
+
+			<p class='summary'>{{book.summary}}</p>
+
+			<p class='author'>{{bookAuthor.name}}</p>
+		</div>
+
+		<div class='button'>
+			<a href='{{ path('app_book_list') }}' class='btn btn-secondary'>Retour à la liste</a>
+			<a href='#' class='btn btn-info'>Réservé</a>
+		</div>
+
+
+	</main>
+{% endblock %}

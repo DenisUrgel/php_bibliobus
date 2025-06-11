@@ -1,0 +1,24 @@
+.book_details {
+    width: 50%;
+    height: auto;
+    align-items: center;
+    margin: 10px auto;
+    padding: 25px;
+
+    .info {
+        background-color: #D9D9D950;
+        height: auto;
+        align-items: center;
+        margin: 15px auto;
+        padding: 15px;
+        border-radius: 25px;
+    }
+
+    img {
+        width: 50%;
+    }
+}
+
+.footer {
+    position: relative;
+}
