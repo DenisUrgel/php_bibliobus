@@ -40,3 +40,25 @@ final class BookController extends AbstractController
         ]);
     }
 }
+
+class BookController extends AbstractController
+{
+    #[Route('/bookListNonEmprunter', name: 'app_book_list_non_emprunter', methods: ['GET'])]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        $qb = $entityManager->createQueryBuilder();
+
+        $qb->select('b')
+            ->from(Book::class, 'b')
+            ->leftJoin('b.empruntBooks', 'eb')
+            ->leftJoin('eb.emprunt', 'e')
+            ->where('e.id IS NULL OR e.status = 0')
+            ->groupBy('b.id');
+
+        $bookListNonEmprunter = $qb->getQuery()->getResult();
+
+        return $this->render('user/book/index.html.twig', [
+            'bookListNonEmprunter' => $bookListNonEmprunter,
+        ]);
+    }
+}
