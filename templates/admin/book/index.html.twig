@@ -1,0 +1,30 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="/styles/livresAdmin.css"/>
+{% endblock %}
+
+
+{% block main %}
+	<main class='main_book'>
+		<div class="search-bar">
+			<input type="text" placeholder="Recherche de livre"/>
+			<button type="submit"><img src="/img/magnifying-glass_1167092.png" alt="loupe"></button>
+		</div>
+		{% for book in bookList %}
+			<div class="book">
+				<img src="{{book.image}}" alt="couverture">
+				<div>
+					<h3>{{book.title}}</h3>
+
+					<p>"{{book.summary}}"</p>
+
+					<a href='{{ path('app_book_details', {'id': book.id}) }}' class='btn btn-info'>Plus de détails</a>
+				</div>
+
+
+			</div>
+		{% endfor %}
+	</main>
+
+{% endblock %}
