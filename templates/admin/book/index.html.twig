@@ -1,30 +1,48 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="/styles/livresAdmin.css"/>
+{% block jQuery %}
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock %}
 
+{% block dataTables %}
+	<link href="https://cdn.datatables.net/v/bs5/dt-2.2.2/datatables.min.css" rel="stylesheet" integrity="sha384-M6C9anzq7GcT0g1mv0hVorHndQDVZLVBkRVdRb2SsQT7evLamoeztr1ce+tvn+f2" crossorigin="anonymous">
+
+ <script src="https://cdn.datatables.net/v/bs5/dt-2.2.2/datatables.min.js" integrity="sha384-k90VzuFAoyBG5No1d5yn30abqlaxr9+LfAPp6pjrd7U3T77blpvmsS8GqS70xcnH" crossorigin="anonymous"></script>
+	 <script>
+					$(document).ready( function () {
+					$('#myTable').DataTable({
+					language: {
+					url: 'https://cdn.datatables.net/plug-ins/2.2.2/i18n/fr-FR.json',
+					}
+					});
+					} );
+																									</script>
+{% endblock %}
 
 {% block main %}
 	<main class='main_book'>
-		<div class="search-bar">
-			<input type="text" placeholder="Recherche de livre"/>
-			<button type="submit"><img src="/img/magnifying-glass_1167092.png" alt="loupe"></button>
+		<div class="container-fluid">
+			<table id="myTable" class="table table-striped table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Couverture</th>
+						<th>auteur</th>
+						<th>Catégorie</th>
+						<th>Résumé</th>
+					</tr>
+				</thead>
+
+				{% for book in bookList %}
+					<tr>
+						<td><img src="{{book.image}}" alt="couverture" class='w-50'></td>
+						<td>{{book.title}}</td>
+						<td>{{book.getAuteurId.getName}}</td>
+						<td>{{book.categorie}}</td>
+						<td>"{{book.summary}}"</td>
+					</tr>
+				{% endfor %}
+			</table>
 		</div>
-		{% for book in bookList %}
-			<div class="book">
-				<img src="{{book.image}}" alt="couverture">
-				<div>
-					<h3>{{book.title}}</h3>
-
-					<p>"{{book.summary}}"</p>
-
-					<a href='{{ path('app_book_details', {'id': book.id}) }}' class='btn btn-info'>Plus de détails</a>
-				</div>
-
-
-			</div>
-		{% endfor %}
 	</main>
-
 {% endblock %}

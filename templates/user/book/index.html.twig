@@ -9,24 +9,29 @@
 {% endblock %}
 
 {% block main %}
+
 	<main class='main_book'>
-		<div class="search-bar">
-			<input type="text" placeholder="Recherche de livre"/>
-			<button type="submit"><img src="/img/magnifying-glass_1167092.png" alt="loupe"></button>
-		</div>
-		{% for book in bookList %}
-			<div class="book">
-				<img src="{{book.image}}" alt="couverture">
-				<div>
-					<h3>{{book.title}}</h3>
+		{% if bookList is not empty %}
+			{# <div class="search-bar">
+				<input type="text" placeholder="Recherche de livre"/>
+				<button type="submit"><img src="/img/magnifying-glass_1167092.png" alt="loupe"></button>
+			</div> #}
+			{% for book in bookList %}
+				<div class="book">
+					<img src="{{book.image}}" alt="couverture">
+					<div>
+						<h3>{{book.title}}</h3>
 
-					<p>"{{book.summary}}"</p>
+						<p>"{{book.summary}}"</p>
 
-					<a href='{{ path('app_book_details', {'id': book.id}) }}' class='btn btn-info'>Plus de détails</a>
+						<a href='{{ path('app_book_details', {'id': book.id}) }}' class='btn btn-info'>Plus de détails</a>
+					</div>
+
+
 				</div>
-
-
-			</div>
-		{% endfor %}
+			{% endfor %}
+		{% else %}
+		<h2>Aucun Livre disponible</h2>
+		{% endif %}
 	</main>
 {% endblock %}
